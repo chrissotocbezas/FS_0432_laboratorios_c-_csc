@@ -1,4 +1,8 @@
 #include <iostream> // Inicializamos el código de esta forma.
+#include <iomanip> // Librería para ajustar decimales.
+
+// En el caso de iomanip, podemos encontrar que es la librería estándar de C++ para manejar decimales.
+// La librería tiene funcionalidades similares, a las que tienen 
 
 //Comenzamos a montar algunas funciones que usaremos más adelante.
 
@@ -49,7 +53,7 @@ do {
     }
     
 
-} while(true); // AL colo
+} while(true); //  El do-while debe tener al inicio 
 
 if (contador > 0) {
     // Variables para los resultados de clasificación.
