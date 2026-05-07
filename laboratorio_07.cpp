@@ -2,7 +2,10 @@
 #include <iomanip> // Librería para ajustar decimales.
 
 // En el caso de iomanip, podemos encontrar que es la librería estándar de C++ para manejar decimales.
-// La librería tiene funcionalidades similares, a las que tienen 
+// La librería tiene funcionalidades similares, a las que tienen funciones como doubleprecision (dp) en Fortran.
+// Esta librería vienen incluida con C++ y es necesaria para manejar decimales o cálculos matemáticos, de lo contrario.
+// Esta librería tiene algunas funcionalidades para establecer constantes.
+// Un ejemplo de uso es para establecer el número pi, el cual no viene incluido en C++, pero puede colocarse y ajustar la cantidad de decimales con las que se quiere
 
 //Comenzamos a montar algunas funciones que usaremos más adelante.
 
@@ -46,11 +49,12 @@ do {
     if (entrada < 0.0 || entrada > 100.0) {
         std::cout << "Nota inválida. Intente de nuevo. " << std::endl;
         continue; // Al agregar la sentencia continue, repetimos de nuevo el proceso desde el inicio.
+    }
     
     notas[contador] = entrada; // Agregamos los datos al array.
     contador++; // Los guardamos.
     
-    }
+    
     
 
 } while(true); //  El do-while debe tener al inicio 
