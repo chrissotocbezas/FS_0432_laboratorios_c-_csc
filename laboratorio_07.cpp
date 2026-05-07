@@ -31,7 +31,7 @@ std::cout << "Recuerde ingresar -1 para finalizar el ingreso de notas." << std::
 // En este caso, podemos usar el do-while, para que el bucle siempre se ejecute al menos una vez, independientemente de las circunstancias.
 
 do {
-    if (contador >= 10) break; // Esto nos indica que si ingresamos 10 notas o más, debemos interrumpir el procedimiento.
+    if (contador >= 15) break; // Esto nos indica que si ingresamos 10 notas o más, debemos interrumpir el procedimiento.
 
     std::cout << "Nota- " << (contador + 1) << ": "; //Con esto mostramos la nota que ingresamos y el índice del valor.
     std::cin >> entrada; // Esto nos permite ingresar los datos.
