@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip> // Biblioteca necesaria para poder manipular decimales o valores
 #include <cmath>
 #include "funciones.hpp"
 #include "integracion.hpp"
