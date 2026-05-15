@@ -54,3 +54,4 @@ int main() {
     delete[] fx;
 
     return 0;
+}

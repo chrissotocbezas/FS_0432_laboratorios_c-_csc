@@ -5,6 +5,6 @@
 // En este caso, colocamos funciones de tipo double.
 
 double calculo_integral_trapecio(double* fx, int n, double h);
-double calculo_simpson_compuesto(double* fx, int n, double h):
+double calculo_simpson_compuesto(double* fx, int n, double h);
 
 #endif
