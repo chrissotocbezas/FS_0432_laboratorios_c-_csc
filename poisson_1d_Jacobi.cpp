@@ -60,4 +60,15 @@ int main() {
     Para este caso de inicializar, un bucle for nos puede ser realmente útil, ya que las iteraciones de la solución analítica y la malla, se encuentran
     completamente definidas.*/
     
+    for (int i = 0; i <= N; ++i) {
+        x[i] = i * h; // Corresponde a la iteración para cada valor de x.
+        u[i] = 0.0; // Esta corresponde a la estimación inicial para cada solución.
+        u_exacta[i] = solucion_analitica(x[i]); // Guardamos la solución analítica en la u exacta para cada iteración de x que tenemos.
+    }
+
+    u[0] = u_new[0] = alpha; 
+    u[N] = u_new[N] = beta; 
+
+    /* Los anteriores valores corresponden al ajuste que realizamos con las condiciones de frontera.
+    En este caso, procederemos a utilizar vectores para almacenar el historial de errores de convergencia que se encuentren.*/
 }
