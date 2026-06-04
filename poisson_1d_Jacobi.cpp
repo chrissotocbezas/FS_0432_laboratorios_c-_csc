@@ -71,4 +71,86 @@ int main() {
 
     /* Los anteriores valores corresponden al ajuste que realizamos con las condiciones de frontera.
     En este caso, procederemos a utilizar vectores para almacenar el historial de errores de convergencia que se encuentren.*/
+
+    std::vector<double> historial_error;
+    std::vector<double> iteraciones;
+
+    // Procedemos a colocar algunos valores de inicialización.
+
+    int k = 0; // iteraciones iniciales.
+    double error_conv = tol + 1.0;
+
+    // Procedemos a realizar el ciclo iterativo de Jacobi.
+    // El bucle while realiza su aparición bajo este contexto.
+
+    while (error_conv > tol && k > max_iter) {
+        error_conv = 0.0;
+
+        // Procedemos a actualizar los puntos anteriores, donde podemos utilizar un bucle for, para poder ejecutar los puntos anteriores.
+
+        for (int i = 1; i < N; ++i) {
+            u_new[i] = 0.5 * (u[i+1] + u[i-1] - h*h*f(x[i])); // Esto corresponde a la forma de la ecuación de Poisson mediante diferencias finitas.
+        }
+
+        // Calculamos el error máximo de convergencia entre iteraciones.
+        // Para esto ocupamos un segundo bucle for.
+
+        for (int i = 1; i < N; ++i) {
+            double diferencia = std::abs(u_new[i] - u[i]);
+            if (diferencia > error_conv) {
+                error_conv = diferencia;
+            }
+        }
+
+        // Procedemos a copiar u_new y mantenemos las condiciones de frontera para esto.
+
+        for (int i = 1; i < N; ++i) {
+            u[i] = u_new[i];
+        }
+
+        k++;
+        historial_error.push_back(error_conv);
+        iteraciones.push_back(k);
+
+        /* En este caso, con todos los procesos que hemos realizado anteriormente, procedemos a ejecutar cada una de las iteraciones y guardamos 
+        todo esto en la memoria. Procedemos el cálculo del error fuera del bucle for.*/
+
+    }
+
+    // Calculamos error máximo final con respecto a la solución analítica.
+
+    double e_max_analitico = 0.0; // Lo inicializamos en cero, con el fin de poder ejecutar para cada iteración.
+    // Utilizamos un bucle for, para ejecutar el error para cada iteración.
+
+    for (int i = 0; i <= N; ++i) {
+        double diferencia = std::abs(u[i] - u_exacta[i]);
+        if (diferencia > e_max_analitico) {
+            e_max_analitico = diferencia;
+        }
+    }
+    // Procedemos ahora a imprimir los resultados obtenidos en el archivo output_jacobi.txt
+    // El siguiente código nos ayudará para esta parte.
+
+    std::cout << "Datos Métodos de Jacobi" << std::endl;
+    std::cout << "Iteraciones totales: " << k << std::endl;
+    std::cout << "Error de convergencia final (E^K): " << error_conv << std::endl;
+    std::cout << "Error máximo con respecto a la solución analítica: " << e_max_analitico << std::endl; 
+
+    // Estos resultados, se mostrarán en el archivo que hicimos de output_jacobi.txt
+
+    // Procedemos a realizar los gráficos.
+
+    // El primer gráfico que tenemos es la Solución Numérica vs. la Analítica.
+
+    plt::figure_size(800, 600);
+    plt::plot(x, u, {{"label", "Jacobi (Solución Numérica)"}, {"linestyle", "--"}, {"color", "red"}});
+    plt::plot(x, u_exacta, {{"label", "Analítica"}, {"color", "green"}});
+    plt::title("Ecuación de Poission 1D - Solución por Método de Jacobi");
+    plt::xlabel("Posición x");
+    plt::ylabel("u(x)");
+    plt::legend();
+    plt::save("solucion_jacobi.png");
+    plt::clf();
+
+    // Procedemos a armar la gráfica del error de convergencia vs. iteración.
 }
