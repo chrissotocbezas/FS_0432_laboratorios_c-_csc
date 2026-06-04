@@ -21,3 +21,9 @@ std::vector<double> lorenz(const std::vector<double>& r, double sigma, double rh
      que nos ayudan a observar el comportamiento que tiene cada componente el transformador de Lorenz. El hecho de que devolvamos drdt nada más,
      esto nos ayuda a confirmarlo como un conjunto de arrays por dimensión. Estos arrays los usaremos en la siguiente parte del código.*/
 }
+
+// A continuación procedemos a colocar las operaciones vectoriales manuales.
+
+std::vector<double> add_vector(const std::vector<double> & a, const std::vector<double>& b, double factor = 1.0) {
+    return {a[0] + factor * b[0], a[1] + factor * b[1], a[2] + factor * b[2]};
+}
