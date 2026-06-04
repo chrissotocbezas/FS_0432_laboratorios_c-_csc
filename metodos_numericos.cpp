@@ -27,3 +27,9 @@ std::vector<double> lorenz(const std::vector<double>& r, double sigma, double rh
 std::vector<double> add_vector(const std::vector<double> & a, const std::vector<double>& b, double factor = 1.0) {
     return {a[0] + factor * b[0], a[1] + factor * b[1], a[2] + factor * b[2]};
 }
+
+// Procedemos a colocar el Método RK4.
+
+std::vector<std::vector<double>> rk4(double h, double t0, double tf, double x0, double yo, double z0){
+    
+}
