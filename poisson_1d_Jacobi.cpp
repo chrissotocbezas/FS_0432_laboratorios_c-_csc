@@ -83,8 +83,8 @@ int main() {
     // Procedemos a realizar el ciclo iterativo de Jacobi.
     // El bucle while realiza su aparición bajo este contexto.
 
-    while (error_conv > tol && k > max_iter) {
-        error_conv = 0.0;
+    while (error_conv > tol && k < max_iter) {
+        // Aquí había un error que se encontraba generando problemas al iterar, se elimina por completo el error_conv = 0.0.
 
         // Procedemos a actualizar los puntos anteriores, donde podemos utilizar un bucle for, para poder ejecutar los puntos anteriores.
 
@@ -95,10 +95,12 @@ int main() {
         // Calculamos el error máximo de convergencia entre iteraciones.
         // Para esto ocupamos un segundo bucle for.
 
+        double error_actual = 0.0;
+
         for (int i = 1; i < N; ++i) {
             double diferencia = std::abs(u_new[i] - u[i]);
-            if (diferencia > error_conv) {
-                error_conv = diferencia;
+            if (diferencia > error_actual) {
+                error_actual = diferencia;
             }
         }
 
@@ -107,6 +109,10 @@ int main() {
         for (int i = 1; i < N; ++i) {
             u[i] = u_new[i];
         }
+
+        // Y colocamos el nombre de la variable para actualizar el error.
+
+        error_conv = error_actual;
 
         k++;
         historial_error.push_back(error_conv);
