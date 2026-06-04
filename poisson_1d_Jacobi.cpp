@@ -39,5 +39,25 @@ int main() {
     int max_iter = 1000000; // Aquí colocamos el número máxima de iteraciones.
 
     // Procedemos a definir las condiciones de frontera que solicitamos.
+
+    double alpha = 0.0;
+    double beta = 0.0;
+
+    /* Recordemos que las condiciones de frontera en este caso, son las condiciones de frontera de Dirichlet, por lo tanto, ambos valores de 
+    alpha y beta serán cero.*/
+
+    // Colocamos los vectores necesarios para la malla uniforme y las respectivas soluciones.
+
+    // Esto conforme al algoritmo de Jacobi.
+
+    std::vector<double> x(N+1);
+    std::vector<double> u(N+1, 0.0);
+    std::vector<double> u_new(N+1, 0.0);
+    std::vector<double> u_exacta(N+1);
+
+    /* Con los vectores para la malla y las soluciones, podemos empezar a inicializar la malla, donde colocamos los sistemas matriciales que vamos a resolver
+    así como las respectivas estimaciones que vamos a colocar, debemos recordar, que cada iteración se debe guardar hasta cierto límite.
+    Para este caso de inicializar, un bucle for nos puede ser realmente útil, ya que las iteraciones de la solución analítica y la malla, se encuentran
+    completamente definidas.*/
     
 }
