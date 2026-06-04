@@ -19,3 +19,5 @@ Es importante asegurarse que se tenga el nombre correcto del archivo de tipo cpp
 3. Pedir desde la terminal que se actúe el ejecutable con ./nombre_del_archivo, al haber compilado el archivo de C++.
 
 4. Verificar desde la terminal si se cargaron los archivos de las gráficas.
+
+5. Volver a realizar los pasos del 1 al 4 con el archivo del método de Gauss-Seidel.
