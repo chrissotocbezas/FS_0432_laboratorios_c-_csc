@@ -84,5 +84,47 @@ int main() {
                 error_convergencia = diferencia;
             }
         }
+
+        k++;
+        historial_error.push_back(error_convergencia);
+        iteraciones.push_back(k);
     }
+
+    double e_max_analitico = 0.0;
+    // Volvemos a inicializar las iteraciones para el error máximo analítico.
+    // Lo volvemos a registrar mediante un bucle for.
+    // En esta ocasión, usamos u[i] y u_exacta[i].
+
+    for (int i = 0; i <= N; ++i) {
+        double diferencia = std::abs(u[i] - u_exacta[i]);
+        if (diferencia > e_max_analitico) {
+            e_max_analitico = diferencia;
+        }
+    }
+
+    // Procedemos a mostrar los resultados en el archivo output_gauss_seidel.txt
+    // Utilizamos los siguientes comandos para llevar esto a cabo.
+
+    std::cout << "Método de Gauss-Seidel" << std::endl;
+    std::cout << "Iteraciones totales: " << k << std::endl;
+    std::cout << "Error de convergencia final (E k): " << error_convergencia << std::endl;
+    std:: cout << "Error Máximo con respecto a la solución analítica: " << e_max_analitico << std::endl;
+
+    // Procedemos a realizar los diferentes gráficos.
+    // Comparamos la solución de Gauss-Seidel numérica con la solución analítica.
+
+    plt::figure_size(800, 600);
+    plt::plot(x, u, {{"label", "Gauss-Seidel (Solución Numérica)"}, {"linestyle", "--"}, {"color", "red"}});
+    plt::plot(x, u_exacta, {{"label", "Solución Analítica"}, {"color", "blue"}});
+    plt::title("Ecuación de Poisson 1D - Método de Gauss-Seidel");
+    plt::xlabel("Posición x");
+    plt::ylabel("u(x)");
+    plt::legend();
+    plt::save("solucion_gauss_seidel.png");
+    plt::clf();
+
+    // Continuamos con la gráfica del error númerico.
+
+    plt::figure_size(800, 600);
+    
 }
