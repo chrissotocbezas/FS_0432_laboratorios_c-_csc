@@ -155,7 +155,7 @@ int main() {
     // Procedemos a armar la gráfica del error de convergencia vs. iteración.
 
     plt::figure_size(800, 600);
-    plt::semilogy(iteraciones, historial_error, {{"label", "E_max convergencia"}, {"color", "red"}});
+    plt::semilogy(iteraciones, historial_error);
     plt::title("Error de convergencia vs Iteración (Método de Jacobi)");
     plt::xlabel("Iteración k");
     plt::ylabel("Error Máximo");

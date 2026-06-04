@@ -126,7 +126,7 @@ int main() {
     // Continuamos con la gráfica del error númerico.
 
     plt::figure_size(800, 600);
-    plt::semilogy(iteraciones, historial_error, {{"label", "E_max_convergencia"}, {"color", "pink"}});
+    plt::semilogy(iteraciones, historial_error);
     plt::title("Error de Convergencia vs Iteración (Gauss-Seidel)");
     plt::xlabel("Iteracion k");
     plt::ylabel("Error Máximo");
