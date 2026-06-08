@@ -85,5 +85,41 @@ std::vector<std::vector<double>> rk2(double h, double t0, double tf, double x0, 
 // Procedemos a colocar el Método RK4.
 
 std::vector<std::vector<double>> rk4(double h, double t0, double tf, double x0, double y0, double z0){
-    
+    int N = static_cast<int>((tf-t0)/h)+1;
+    std::vector<std::vector<double>> trayectoria;
+    trayectoria.reserve(N);
+
+    std::vector<double> r = {x0, y0, z0};
+    trayectoria.push_back(r);
+
+    // Procesamos a iterar las constantes para armar la matriz.
+
+    for(int i = 1: i < N; ++i){
+        // Procedemos a evaluar el primer paso intermedio (pendiente al inicio del intervalo).
+        std::vector<double> k1 = lorenz(r, sigma, rho, beta);
+
+        // Procedemos con la evaluación del segundo paso intermedio, esto debido a que RUnge-Kutta utiliza cuatro evaluaciones de la función f.
+
+        std::vector<double> r_k2 = add_vector(r, k1, h/2.0);
+        std::vector<double> k2 = lorenz(r_k2, sigma, rho, beta);
+
+        // Procedemos a evaluar el tercer paso intermedio...
+        std::vector<double> r_k3 = add_vector(r, k2, h/2.0);
+        std::vector<double> k3 = lorenz(r_k3, sigma, rho, beta);
+
+        // Procedemos a evaluar el cuarto paso intermedio de nuestro método RK4.
+        std::vector<double> r_k4 = add_vector(r, k3, h);
+        std::vector<double> k4 = lorenz(r_k4, sigma, rho, beta);
+
+        // Y procedemos a promediar de manera ponderada todas las pendientes calculadas.
+        // Esto corresponde al cálculo final del Método de Runge-Kutta (k1 + 2*k2 + 2*k3 + k4).
+        std::vector<double> k_combinado = add_vector(k1, k2, 2.0);
+        k_combinado = add_vector(k_combinado, k3, 2.0);
+        k_combinado = add_vector(k_combinado, k4, 1.0);
+
+        // Realizamos la actualización final del paso temporal aplicando el factor (h / 6.0).
+        r = add_vector(r, k_combinado, h / 6.0);
+        trayectoria.push_back(r);
+    }
+    return trayectoria; // Devolvemos la matriz final con la aproximación de Runge-Kutta 4.
 }
