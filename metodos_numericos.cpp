@@ -76,8 +76,10 @@ std::vector<std::vector<double>> rk2(double h, double t0, double tf, double x0, 
         std::vector<double> k2 = lorenz(r_medio, sigma, rho, beta);
 
         // En donde colocamos la fórmula dada por r_{n+1}=r_n + h *k2
-        
+        r = add_vector(r, k2, h);
+        trayectoria.push_back(r);
     }
+    return trayectoria;
 }
 
 // Procedemos a colocar el Método RK4.
