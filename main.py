@@ -38,3 +38,38 @@ graficar_3d(sol_rk2, 'RK2', 'trayectoria_3d_rk2.png', 'darkorange')
 graficar_3d(sol_rk4, 'RK4', 'trayectoria_3d_rk4.png', 'navy')
 
 # Colocamos una sensibilidad para las condiciones iniciales
+
+epsilon = 1e-8
+x0_prime = x0 + epsilon
+
+# Ejecutar RK4 con la condición inicial perturbada
+
+sol_rk4_perturbada = np.array(metodos_numericos.rk4(h, t0, tf, x0_prime, y0, z0))
+
+# Procedemos a calcular la distancia euclidiana para cada paso del tiempo
+
+diff = sol_rk4 - sol_rk4_perturbada
+distancias = np.linalg.norm(diff, axis=1)
+
+# Procedemos a imprimir la salida requerida por la tarea
+
+separacion_inicial = distancias[0]
+separacion_final = distancias[1]
+
+# Entonces, podemos mostrar los datos obtenidos para separación inicial y la separación final
+
+print(f"Separación inicial: {separacion_inicial:.6e}")
+print(f"Separación final: {separacion_final:.6e}")
+
+# Y procedemos a graficar en función del tiempo, para esto, es ampliamente recomendado usar una escala semilogarítimica (semilogy)
+
+plt.figure(figsize=(8,5))
+plt.semilogy(t, distancias, color='purple', label=r'$d(t)= ||r(t)-r\'(t)||$')
+plt.xlabel('Tiempo(t)')
+plt.ylabel('Separación (Escala Logarítmica)')
+plt.title('Sensibilidad a Condiciones Iniciales para (Lorenz RK4)')
+plt.grid(True, which="both", ls='--', alpha=0.5)
+plt.legend()
+plt.tight_layout()
+plt.savefig('Grafica_Sensibilidad.png', dpi=300)
+plt.close()
