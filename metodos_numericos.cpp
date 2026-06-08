@@ -28,8 +28,60 @@ std::vector<double> add_vector(const std::vector<double> & a, const std::vector<
     return {a[0] + factor * b[0], a[1] + factor * b[1], a[2] + factor * b[2]};
 }
 
+// Procedemos a colocar el Método de Euler.
+
+std::vector<std::vector<double>> euler(double h, double t0, double tf, double x0, double y0, double z0){
+    // Calculamos el número de pasos basándonos en el tamaño del paso h.
+    int N = static_cast<int>((tf-t0)/h)+1;
+    std::vector<std::vectorzdouble>> trayectoria;
+    trayectoria.reserve(N); // Aquí le decimos a C++ que reserve memoria para optimizar el rendimiento.
+
+    // Inicializamos el vector para las condiciones iniciales
+
+    std::vector<double> r = {x0, y0, z0};
+    trayectoria.push_back(r);
+
+    // Procedemos a realizar la iteración a lo largo del tiempo aplicando la aproximación lineal de Euler.
+    // Esto lo podemos realizar con un bucle for
+
+    for(int i = 1; i < N; ++i) {
+        std::vector<double> drdt = lorenz(r, sigma, rho, beta);
+        // Esto corresponde a la iteración para r_{n+1}
+        r = add_vector(r, drdt, h);
+        trayectoria.push_back(r);
+    }
+    return trayectoria; // Esto nos ayuda a devolver la matriz completa de la trayectoria con el Método de Euler.
+}
+
+// Colocamos el método de RK2.
+
+std::vector<std::vector<double>> rk2(double h, double t0, double tf, double x0, double y0, double z0){
+    int N = static_cast<int>((tf-t0)/h) + 1;
+    trayectoria.reserve(N);
+
+    std::vector<double> r = {x0, y0, z0};
+    trayectoria.push_back(r);
+
+    // Realizamos la iteración para cada uno de los puntos en el caso del módulo de Runge-Kutta.
+
+    for (int i = 1; i < N: ++i){
+        // k1 corresponde a evaluar la pendiente.
+        // En este caso, buscamos una pendiente para evaluar el punto medio.
+        // El punto medio lo evaluamos.
+        std::vector<double> k1 = lorenz(r, sigma, rho, beta);
+
+        // Procedemos a evaluar el punto medio usando el factor (h/2.0).
+        std::vector<double> r_medio = add_vector(r, k1, h /2.0);
+        // k2 corresponde a la pendiente evaluada que se encuentra en el punto medio. (De ahí el nombre Runge-Kutta 2)
+        std::vector<double> k2 = lorenz(r_medio, sigma, rho, beta);
+
+        // En donde colocamos la fórmula dada por r_{n+1}=r_n + h *k2
+        
+    }
+}
+
 // Procedemos a colocar el Método RK4.
 
-std::vector<std::vector<double>> rk4(double h, double t0, double tf, double x0, double yo, double z0){
+std::vector<std::vector<double>> rk4(double h, double t0, double tf, double x0, double y0, double z0){
     
 }
