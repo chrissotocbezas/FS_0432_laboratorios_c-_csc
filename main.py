@@ -9,9 +9,9 @@ import lorenz_methods
 
 # Procedemos a ejecutar los 3 métodos numéricos que hemos armado y los colocamos en forma de arrays gracias a Numpy.abs
 
-sol_euler = np.array(metodos_numericos.euler(h, t0, tf, x0, y0, z0))
-sol_rk2 = np.array(metodos_numericos.rk2(h, t0, tf, x0, y0, z0))
-sol_rk4 = np.array(metodos_numericos.rk4(h, t0, tf, x0, y0, z0))
+sol_euler = np.array(lorenz_methods.euler(h, t0, tf, x0, y0, z0))
+sol_rk2 = np.array(lorenz_methods.rk2(h, t0, tf, x0, y0, z0))
+sol_rk4 = np.array(lorenz_methods.rk4(h, t0, tf, x0, y0, z0))
 
 # Procedemos a generar el vector de tiempo y marcamos el número de pasos que vamos a llamar
 N = int((tf-t0)/h) + 1
