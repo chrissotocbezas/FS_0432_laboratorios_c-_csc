@@ -137,7 +137,7 @@ std::vector<std::vector<double>> rk4(double h, double t0, double tf, double x0, 
 
 // Procedemos a agregar el módulo que nos ayude con la vincluación con pybind11
 
-PYBIND11_MODULE(lorenz, m){
+PYBIND11_MODULE(lorenz_methods, m){
     m.doc() = "Módulo para resolver el sistema de LOrenz usando los métodos Euler, RK2 y RK4";
     m.def("euler", &euler, "Método de Euler", py::arg("h"), py::arg("t0"), py::arg("tf"), py::arg("x0"), py::arg("y0"), py::arg("z0"));
     m.def("rk2", &rk2, "Método de Runge-Kutta 2", py::arg("h"), py::arg("t0"), py::arg("tf"), py::arg("x0"), py::arg("y0"), py::arg("z0"));
