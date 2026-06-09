@@ -2,6 +2,10 @@
 #include <iostream>
 #include <cmath>
 #include <vector> // Esta librería será necesaria porque trabajaremos con vectores y matrices.
+#include <pybind11/pynind11.h>
+#include <pybind11/stl.h>
+
+namespace py = pybind11;
 
 // Procedemos a generar el lado derecho del Sistema de Lorentz.
 
