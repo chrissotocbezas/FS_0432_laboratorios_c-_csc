@@ -5,7 +5,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-import metodos_numericos
+import lorenz_methods
 
 # Procedemos a ejecutar los 3 métodos numéricos que hemos armado y los colocamos en forma de arrays gracias a Numpy.abs
 
