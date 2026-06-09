@@ -37,7 +37,7 @@ std::vector<double> add_vector(const std::vector<double> & a, const std::vector<
 std::vector<std::vector<double>> euler(double h, double t0, double tf, double x0, double y0, double z0){
     // Calculamos el número de pasos basándonos en el tamaño del paso h.
     int N = static_cast<int>((tf-t0)/h)+1;
-    std::vector<std::vectorzdouble>> trayectoria;
+    std::vector<std::vector<double>> trayectoria;
     trayectoria.reserve(N); // Aquí le decimos a C++ que reserve memoria para optimizar el rendimiento.
 
     // Inicializamos el vector para las condiciones iniciales
