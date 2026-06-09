@@ -1,0 +1,5 @@
+# Ignorar el archivo binario específico
+metodos_numericos.cpython-311-x86_64-linux_gnu.so
+
+# Regla: Ignorar este archivo extra
+

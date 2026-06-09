@@ -7,7 +7,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 import lorenz_methods
 
-# Procedemos a ejecutar los 3 métodos numéricos que hemos armado y los colocamos en forma de arrays gracias a Numpy.abs
+# Procedemos a ejecutar las constantes necesarias para nuestros métodos
+
+h = 0.01 # Tamaño del paso temporal
+t0 = 0.0 # Tiempo inicial
+tf = 40.0 # Tiempo final
+
+# Procedemos a definir las condiciones iniciales
+
+x0, y0, z0 = 1.0, 1.0, 1.0
+
+# Procedemos a ejecutar los 3 métodos numéricos que hemos armado y los colocamos en forma de arrays gracias a Numpy
 
 sol_euler = np.array(lorenz_methods.euler(h, t0, tf, x0, y0, z0))
 sol_rk2 = np.array(lorenz_methods.rk2(h, t0, tf, x0, y0, z0))
