@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cmath>
 #include <vector> // Esta librería será necesaria porque trabajaremos con vectores y matrices.
-#include <pybind11/pynind11.h>
+#include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
 namespace py = pybind11;
@@ -68,7 +68,7 @@ std::vector<std::vector<double>> rk2(double h, double t0, double tf, double x0, 
 
     // Realizamos la iteración para cada uno de los puntos en el caso del módulo de Runge-Kutta.
 
-    for (int i = 1; i < N: ++i){
+    for (int i = 1; i < N; ++i){
         // k1 corresponde a evaluar la pendiente.
         // En este caso, buscamos una pendiente para evaluar el punto medio.
         // El punto medio lo evaluamos.
@@ -98,7 +98,7 @@ std::vector<std::vector<double>> rk4(double h, double t0, double tf, double x0, 
 
     // Procesamos a iterar las constantes para armar la matriz.
 
-    for(int i = 1: i < N; ++i){
+    for(int i = 1; i < N; ++i){
         // Procedemos a evaluar el primer paso intermedio (pendiente al inicio del intervalo).
         std::vector<double> k1 = lorenz(r, sigma, rho, beta);
 
