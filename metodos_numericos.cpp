@@ -7,6 +7,12 @@
 
 namespace py = pybind11;
 
+// Procedemos a definir los valores de las constantes
+
+const double constante_sigma = 10.0;
+const double constante_rho = 28.0;
+const double constante_beta = 8.0/3.0;
+
 // Procedemos a generar el lado derecho del Sistema de Lorentz.
 
 std::vector<double> lorenz(const std::vector<double>& r, double sigma, double rho, double beta) {
@@ -49,7 +55,7 @@ std::vector<std::vector<double>> euler(double h, double t0, double tf, double x0
     // Esto lo podemos realizar con un bucle for
 
     for(int i = 1; i < N; ++i) {
-        std::vector<double> drdt = lorenz(r, sigma, rho, beta);
+        std::vector<double> drdt = lorenz(r, constante_sigma, constante_rho, constante_beta);
         // Esto corresponde a la iteración para r_{n+1}
         r = add_vector(r, drdt, h);
         trayectoria.push_back(r);
@@ -61,6 +67,7 @@ std::vector<std::vector<double>> euler(double h, double t0, double tf, double x0
 
 std::vector<std::vector<double>> rk2(double h, double t0, double tf, double x0, double y0, double z0){
     int N = static_cast<int>((tf-t0)/h) + 1;
+    std::vector<std::vector<double>> trayectoria;
     trayectoria.reserve(N);
 
     std::vector<double> r = {x0, y0, z0};
@@ -72,12 +79,12 @@ std::vector<std::vector<double>> rk2(double h, double t0, double tf, double x0, 
         // k1 corresponde a evaluar la pendiente.
         // En este caso, buscamos una pendiente para evaluar el punto medio.
         // El punto medio lo evaluamos.
-        std::vector<double> k1 = lorenz(r, sigma, rho, beta);
+        std::vector<double> k1 = lorenz(r, constante_sigma, constante_rho, constante_beta);
 
         // Procedemos a evaluar el punto medio usando el factor (h/2.0).
         std::vector<double> r_medio = add_vector(r, k1, h /2.0);
         // k2 corresponde a la pendiente evaluada que se encuentra en el punto medio. (De ahí el nombre Runge-Kutta 2)
-        std::vector<double> k2 = lorenz(r_medio, sigma, rho, beta);
+        std::vector<double> k2 = lorenz(r_medio, constante_sigma, constante_rho, constante_beta);
 
         // En donde colocamos la fórmula dada por r_{n+1}=r_n + h *k2
         r = add_vector(r, k2, h);
@@ -100,20 +107,20 @@ std::vector<std::vector<double>> rk4(double h, double t0, double tf, double x0, 
 
     for(int i = 1; i < N; ++i){
         // Procedemos a evaluar el primer paso intermedio (pendiente al inicio del intervalo).
-        std::vector<double> k1 = lorenz(r, sigma, rho, beta);
+        std::vector<double> k1 = lorenz(r, constante_sigma, constante_rho, constante_beta);
 
         // Procedemos con la evaluación del segundo paso intermedio, esto debido a que RUnge-Kutta utiliza cuatro evaluaciones de la función f.
 
         std::vector<double> r_k2 = add_vector(r, k1, h/2.0);
-        std::vector<double> k2 = lorenz(r_k2, sigma, rho, beta);
+        std::vector<double> k2 = lorenz(r_k2, constante_sigma, constante_rho, constante_sigma);
 
         // Procedemos a evaluar el tercer paso intermedio...
         std::vector<double> r_k3 = add_vector(r, k2, h/2.0);
-        std::vector<double> k3 = lorenz(r_k3, sigma, rho, beta);
+        std::vector<double> k3 = lorenz(r_k3, constante_sigma, constante_rho, constante_beta);
 
         // Procedemos a evaluar el cuarto paso intermedio de nuestro método RK4.
         std::vector<double> r_k4 = add_vector(r, k3, h);
-        std::vector<double> k4 = lorenz(r_k4, sigma, rho, beta);
+        std::vector<double> k4 = lorenz(r_k4, constante_sigma, constante_rho, constante_beta);
 
         // Y procedemos a promediar de manera ponderada todas las pendientes calculadas.
         // Esto corresponde al cálculo final del Método de Runge-Kutta (k1 + 2*k2 + 2*k3 + k4).
