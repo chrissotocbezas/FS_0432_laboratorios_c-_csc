@@ -1,0 +1,4 @@
+Método de Gauss-Seidel
+Iteraciones totales: 4667
+Error de convergencia final (E k): 9.99295e-07
+Error Máximo con respecto a la solución analítica: 0.0010035

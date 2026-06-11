@@ -1,0 +1,4 @@
+Datos Métodos de Jacobi
+Iteraciones totales: 7928
+Error de convergencia final (E^K): 9.99562e-07
+Error máximo con respecto a la solución analítica: 0.00201637
