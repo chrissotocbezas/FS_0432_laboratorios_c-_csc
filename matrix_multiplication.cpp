@@ -11,7 +11,7 @@ int main(int argc, char* argv[]){
     // En esta función main, procedemos a ejecutar la multiplicación de matrices.
     // Debemos declarar algunas variables, luego debemos ejecutar la multiplicación de matrices con varios bucles for...
 
-    int num_threads = 32;
+    int num_threads = 8;
     if (argc > 1) {
         num_threads = std::atoi(argv[1]);
     }
