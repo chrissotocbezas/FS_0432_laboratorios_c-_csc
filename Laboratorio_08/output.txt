@@ -1,0 +1,7 @@
+Ingrese un número de subintervalos (n): 800
+Integral de 4/(1+x²), para el intervalo dado en [0,1]
+Trapecio Compuesto: 3.141592
+Simpson compuesto: 1.000000
+Valor exacto: 3.141593
+Error Método Trapecio: 0.000000
+Error Método Simpson: 4.141593
