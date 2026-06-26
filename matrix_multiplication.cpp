@@ -2,14 +2,24 @@
 #include <cmath>
 #include <iomanip>
 #include <omp.h>
+#include <vector> // Se corrige la librería faltante..
 #include <cstdlib>
 
 // Colocamos las librerías a utilizar para la ejecución de este laboratorio.
 
-int main(){
+int main(int argc, char* argv[]){
     // En esta función main, procedemos a ejecutar la multiplicación de matrices.
     // Debemos declarar algunas variables, luego debemos ejecutar la multiplicación de matrices con varios bucles for...
 
+    int num_threads = 32;
+    if (argc > 1) {
+        num_threads = std::atoi(argv[1]);
+    }
+
+    // Indicamos a OpenMp cuántos hilos usar en la región paralela.
+
+    omp_set_num_threads(num_threads);
+    
     int N = 12800; // Este tamaño inicial lo procedemos a declarar.
 
     // Procedemos a inicializar las matrices que las vamos a utilizar.
@@ -26,15 +36,15 @@ int main(){
 
     // Procedemos a realizar el bucle for
 
-    #pragma omp parallel for 
+    #pragma omp parallel for schedule(static) shared(A, B, C, N)
     
-    for (int i = 0; i < N; ++k){
+    for (int i = 0; i < N; ++i){
         // Cambiamos el orden de los bucles a i-k-j
         for (int k = 0; k < N; ++k) {
             // Procedemos a cambiar las variables
             double a_ik = A[i*N + k];
             for (int j = 0; j < N; ++j) {
-                C[i * N + j] += a_ik = B[k*N + j];
+                C[i * N + j] += a_ik * B[k*N + j];
             }
         }
     }
