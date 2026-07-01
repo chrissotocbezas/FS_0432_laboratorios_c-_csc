@@ -1,0 +1,2 @@
+Resultado final del producto punto: 128000
+Tiempo de ejecución del bucle (1 procesos): 0.000447333s.
