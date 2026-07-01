@@ -26,7 +26,7 @@ for p in 1 2 4; do
 
     # Procedemos a ejecutar mpirun y extrae solo el número decimal flotante del tiempo
 
-    tiempos = $(mpirun -np $p $EJECUTABLE | grep -oP '[0-9]+\.[0-9]+')
+    tiempos=$(mpirun -np $p $EJECUTABLE | grep -oP '[0-9]+\.[0-9]+')
 
     if [ -z "$tiempo" ]; then
         echo "Advertencia: No se pudo capturar el tiempo para $p procesos."
