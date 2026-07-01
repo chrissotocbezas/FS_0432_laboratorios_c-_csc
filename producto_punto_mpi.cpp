@@ -129,5 +129,14 @@ int main(int argc, char** argv){
     double t_max_total = 0.0;
     MPI_Reduce(&paso_tiempo, &t_max_total, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
 
-    
+    // Procedemos a imprimir el resultado final únicamente desde el proceso 0.
+
+    if (rank == 0) {
+        std::cout << "Resultado final del producto punto: " << producto_punto_global << std::endl;
+        std::cout << "Tiempo de ejecución del bucle (" << size << " procesos): " << t_max_total << "s." << std::endl;
+
+    }
+
+    MPI_Finalize(); // Finalizamos el proceso con MPI
+    return 0;
 }
