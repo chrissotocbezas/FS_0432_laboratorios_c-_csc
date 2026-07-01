@@ -37,4 +37,14 @@ int main(int argc, char** argv){
     }
 
     int local_N = N / size; // Declaramos tamaño local de N.
+
+    // Colocamos vectores locales para cada proceso.
+    // Estos vectores locales, los utilizaremos para realizar el producto punto de forma local.
+
+    std::vector<double> A_local(local_N);
+    std::vector<double> B_local(local_N);
+
+    // Procedemos con una definición de etiquetas (tags) distintas para el envío de A y B
+
+    
 }
