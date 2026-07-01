@@ -86,8 +86,15 @@ int main(int argc, char** argv){
         // Finalizamos la condición para el proceso rank == 0.
     }
     else {
-        
+        // Procesos esclavos reciben sus respectivos bloques
+        MPI_Recv(A_local.data(), local_N, MPI_DOUBLE, 0, TAG_A, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+        MPI_Recv(B_local.data(), local_N, MPI_DOUBLE, 0, TAG_B, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+
     }
 
-    
+    /* Este bloque es la contraparte del envío de datos, donde el bloque ejecuta única y exclusivamente
+    los procesos esclavos que tienen un rank mayor a 0.
+    La función de estos es recibir y almacenar los paquetes de datos que el proceso 0 envío por la red.
+    En este caso se utilizan dos llamadas consecutivas a la función MPI_Recv, ya que una parte para el fragmento del 
+    vector A y otra parte del vector B.*/
 }
