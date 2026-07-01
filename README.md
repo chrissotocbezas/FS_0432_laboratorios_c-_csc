@@ -17,4 +17,15 @@ Esto con el objetivo de delimitar las zonas en donde se deben delimitar el alcan
 
 ### Para compilar...
 
-1. 
+1. Verificar descarga en la computadora del repositorio, puede ser mediante descarga directa desde el repositorio de GitHub o ejecutarse mediante el comando 'gitclone'.
+2. Una vez descargado todos los programas, se debe proceder a llamar el ejecutable mediante:
+
+    mpic++ producto_punto_mpi.cpp -o producto_punto_mpi
+
+3. Una vez compilado y realizado el ejecutable, procedemos a colocar el siguiente comando:
+
+    mpirun -np 4 ./producto_punto_mpi
+
+Esto con el objetivo de poder ejecutar el programa con 4 procesos en el contexto de MPI.
+
+¡IMPORTANTE! El número 4, es solo un ejemplo de muestra de los procesos que se pueden ejecutar, realmente se pueden agregar los procesos que la computadora permita realizar.
