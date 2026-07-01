@@ -7,7 +7,7 @@ ARCHIVO_SALIDA="tiempos.txt"
 
 # Verificamos que el archivo ejecutable exista
 
-if [! -f "$EJECUTABLE" ]; then
+if [ ! -f "$EJECUTABLE" ]; then
     echo "Error: No se encuentra el ejecutable $EJECUTABLE"
     echo "Asegúrate de compilar primero en la terminal con:"
     echo "mpic++ producto_punto_mpi.cpp -o producto_punto_mpi"
