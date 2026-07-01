@@ -28,7 +28,7 @@ int main(int argc, char** argv){
 
     // Procedemos a realizar la verificación de división exacta para este procedimiento.
 
-    if (N % size 1= 0) {
+    if (N % size != 0) {
         if (rank == 0) {
             std::cerr << "Error: El tamaño N (" << N << ") debe ser divisible por el número de procesos (" << size << "). " << std::endl;
         }
