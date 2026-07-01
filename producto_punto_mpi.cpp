@@ -70,6 +70,10 @@ int main(int argc, char** argv){
             A_local[i] = A[i];
             B_local[i] = B[i];
         }
+
+        /* Este bucle for sirve para que el proces 0 se asigne a sí mismo la primera porción de los datos.
+        Lo anterior se da porque en programación paralela con MPI, el proceso 0 no lo tenemos como alguien que solo reparte el trabajo
+        simo, que es un trabajador que debe calcular también su propia parte del producto final*/
     }
 
     
