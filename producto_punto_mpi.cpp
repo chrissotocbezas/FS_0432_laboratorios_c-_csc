@@ -97,4 +97,20 @@ int main(int argc, char** argv){
     La función de estos es recibir y almacenar los paquetes de datos que el proceso 0 envío por la red.
     En este caso se utilizan dos llamadas consecutivas a la función MPI_Recv, ya que una parte para el fragmento del 
     vector A y otra parte del vector B.*/
+
+    // Colocamos una sincronización previa a la medición de tiempo...
+
+    MPI_Barrier(MPI_COMM_WORLD);
+    double tiempo_inicial = MPI_Wtime();
+
+    // Procedemos con el cálculo del producto punto local...
+    double producto_punto_local = 0.0;
+
+    /* Con un bucle for, procedemos a ejecutar el producto punto local, debemos notar que en este caso,
+    la operación, se termina convirtiendo en una forma de suma local, por lo que su forma de guardar cada iteración,
+    será mediante +=.*/
+
+    for (int i = 0; i < local_N; ++i) {
+        producto_punto_local += A_local[i] * B_local[i];
+    }
 }
