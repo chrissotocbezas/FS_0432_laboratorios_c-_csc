@@ -74,6 +74,19 @@ int main(int argc, char** argv){
         /* Este bucle for sirve para que el proces 0 se asigne a sí mismo la primera porción de los datos.
         Lo anterior se da porque en programación paralela con MPI, el proceso 0 no lo tenemos como alguien que solo reparte el trabajo
         simo, que es un trabajador que debe calcular también su propia parte del producto final*/
+
+        // Procedemos con envío de bloques al resto de los procesos.
+        // Para lo anterior utilizamos tags distintos.
+
+        for(int p = 1; p < size; ++p){
+            MPI_Send(&A[p * local_N], local_N, MPI_DOUBLE, p, TAG_A, MPI_COMM_WORLD);
+            MPI_Send(&B[p * local_N], local_N, MPI_DOUBLE, p, TAG_B, MPI_COMM_WORLD);
+        }
+
+        // Finalizamos la condición para el proceso rank == 0.
+    }
+    else {
+        
     }
 
     
