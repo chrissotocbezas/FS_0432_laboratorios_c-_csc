@@ -46,5 +46,31 @@ int main(int argc, char** argv){
 
     // Procedemos con una definición de etiquetas (tags) distintas para el envío de A y B
 
+    const int TAG_A = 0;
+    const int TAG_B = 1;
+
+    // Volvemos a colocar la condición para cuando tengamos rank == 0
+
+    if (rank == 0) {
+        // Inicialización para el caso en el proceso 0
+
+        std::vector<double> A(N);
+        std::vector<double> B(N);
+
+        // Con este bucle for, generamos una condición para guardar espacios en memoria, para que los vectores sean uniformes.
+
+        for (int i = 0; i < N; ++i){
+            A[i] = f((double)i);
+            B[i] = 2.0 * f((double)i);
+        }
+
+        // El proceso 0 toma su propia porción local
+
+        for (int i = 0; i < local_N; ++i){
+            A_local[i] = A[i];
+            B_local[i] = B[i];
+        }
+    }
+
     
 }
