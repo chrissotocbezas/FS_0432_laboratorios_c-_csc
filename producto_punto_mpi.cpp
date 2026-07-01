@@ -113,4 +113,21 @@ int main(int argc, char** argv){
     for (int i = 0; i < local_N; ++i) {
         producto_punto_local += A_local[i] * B_local[i];
     }
+
+    // Procedemos a realizar la reducción global para consolidar la suma en el proceso 0
+
+    double producto_punto_global = 0.0;
+    MPI_Reduce(&producto_punto_local, &producto_punto_global, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
+
+    // Procedemos con la finalización del tiempo de cálculo y comunicación de reducción
+
+    double tiempo_final = MPI_Wtime();
+    double paso_tiempo = tiempo_final - tiempo_inicial;
+
+    // Procedemos a obtener el tiempo máximo total entre todos los procesos
+
+    double t_max_total = 0.0;
+    MPI_Reduce(&paso_tiempo, &t_max_total, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
+
+    
 }
