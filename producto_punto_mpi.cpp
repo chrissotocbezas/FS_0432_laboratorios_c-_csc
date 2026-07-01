@@ -36,5 +36,5 @@ int main(int argc, char** argv){
         return 1;
     }
 
-    int local_N = N / size;
+    int local_N = N / size; // Declaramos tamaño local de N.
 }
