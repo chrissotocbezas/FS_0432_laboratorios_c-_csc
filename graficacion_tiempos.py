@@ -22,7 +22,7 @@ plt.ylabel('Tiempo de Ejecución (segundos)', fontsize=12)
 
 # Procedemos a configurar el eje X para mostrar procesos evaluados
 
-plt.xticks(data['procesos'])
+plt.xticks(datos['procesos'])
 
 plt.grid(True, linestyle='--', alpha=0.6)
 plt.legend()
