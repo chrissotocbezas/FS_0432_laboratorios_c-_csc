@@ -12,7 +12,7 @@ except:
 # Procedemos con la configuración del diseño de la gráfica
 
 plt.figure(figsize=(8,5))
-plt.plot(datos['procesos'], datos['tiempo'], marker='o', linestyle='-', color='b', linewidth=2, label='Tiempo observado')
+plt.plot(datos['procesos'], datos['Tiempo'], marker='o', linestyle='-', color='b', linewidth=2, label='Tiempo observado')
 
 # Procedemos a colocar los títulos y etiquetas...
 
